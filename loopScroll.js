@@ -7,12 +7,12 @@
 		var $l = $('li',$u).css('float','left');
 
 		var params = {
-			'$u' : $u,
-			'$l' : $l,
-			'len': $l.length,
+			'$u'     : $u,
+			'$l'     : $l,
+			'len'    : $l.length,
 			'loaded' : true,
-			'i' : 1,
-			'$i' : $(options.index, content)
+			'i'      : 1,
+			'$i'     : $(options.index, content)
 		}
 
 		this.options = $.extend({}, params, options);
@@ -106,12 +106,12 @@
 
 	$.fn.loopScroll = function(option){
 		 var defaults = {
-		 	btnNext: ".next_btn",
-       		btnPrev: ".pre_btn",
-       		index : ".img_count",
-       		index_class : 'active',
-		 	mouseWheel: true,
-		    speed : 4000
+				btnNext     : ".next_btn",
+				btnPrev     : ".pre_btn",
+				index       : ".img_count",
+				index_class : 'active',
+				mouseWheel  : true,
+				speed       : 4000
 		  }
 
 		return this.each(function(){
