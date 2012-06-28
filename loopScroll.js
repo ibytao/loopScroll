@@ -24,6 +24,7 @@
 				if(options.loaded){
 					options.w = w = options.$l.width();
 					options.$u.width( w * options.len ).css( 'left', -w );
+					options.$l.css('opacity',0.5).eq(1).css('opacity',1);
 					me.run();
 					options.loaded = false;
 				}
@@ -86,6 +87,8 @@
 		this.$u.stop(true, true).animate( { 'left': -this.w*this.i },350 );
 		this.$i.find('a').eq(this.i-1).addClass( this.index_class )
 							     .siblings().removeClass( this.index_class );
+							     
+		this.$l.css('opacity',0.5).eq(this.i).css('opacity',1);
 
 		this.i == this.len-1 && $('a:eq(0)',this.$i).addClass( this.index_class ).siblings().removeClass( this.index_class );
 	}
