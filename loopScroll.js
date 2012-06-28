@@ -2,6 +2,7 @@
 	var loopScroll = function(content, options){
 		var $u = $('ul',content);
 			$u.append($u.find('li:first').clone())
+			$u.append($u.find('li:eq(1)').clone())
 			$u.prepend($u.find('li:eq(1)').clone())
 		var $l = $('li',$u).css('float','left');
 		var params = {
@@ -34,9 +35,8 @@
 			var options = this.options, me = this;
 			options.cle && clearInterval(options.cle);
 			options.cle = setInterval(function(){
-							options.i++
-							//console.log('index'+index,li_len);
-							if( options.i >= options.len){
+							options.i++		
+							if( options.i >= options.len-1){
 								options.i = 1
 								options.$u.css('left',-options.w)
 								arguments.callee()
@@ -63,7 +63,7 @@
 	var nextHandle = function(){
 		clearInterval(this.cle);
 		this.$u.stop(true, true)
-		if(this.i == (this.len-1)){
+		if(this.i == (this.len-2)){
 			this.i = 1;
 			this.$u.css('left',-this.w);
 		} 
