@@ -26,14 +26,14 @@ loopScroll.prototype = {
     init : function(){
             var options = this.options, me = this;
             options.$l.find('img').load(function(){
-                    if(options.loaded){
+                if(options.loaded){
                     var w = options.w = options.$l.width();
                     options.$u.width( w * options.len ).css( 'left', -w );
                     options.$l.css('opacity',0.5).eq(1).css('opacity',1);
                     me.run();
                     options.loaded = false;
-                    }
-                    })
+                }
+            })
             this.bind()
         },
 
@@ -41,16 +41,16 @@ loopScroll.prototype = {
             var options = this.options, me = this;
             options.cle && clearInterval(options.cle);
             options.cle = setInterval(function(){
-                    options.i++
-                    if( options.i >= options.len-1){
+                options.i++
+                if( options.i >= options.len-1){
                     options.i = 1
-                    options.$u.css('left',-options.w)
-                    arguments.callee()
-                    }else{
-                    scrollImg.call( options )
-                    }
+                    options.$u.css('left',-options.w);
+                    arguments.callee();
+                }else{
+                    scrollImg.call( options );
+                }
 
-                    },options.speed);
+            },options.speed);
         },
 
     bind : function(){
@@ -81,16 +81,15 @@ loopScroll.prototype = {
 
  var prevHandle = function(){
      clearInterval(this.cle)
-         this.$u.stop(true, false)
-
-         if( this.i == 1 ){
-             this.i = this.len-2;
-             this.$u.css('left',-this.w*(this.i))
-         }
+     this.$u.stop(true, false)
+     if( this.i == 1 ){
+        this.i = this.len-2;
+        this.$u.css('left',-this.w*(this.i))
+     }
 
      this.i--;
      scrollImg.call( this )
-         return false;
+     return false;
  }
 
  var scrollImg = function(){
@@ -108,20 +107,20 @@ loopScroll.prototype = {
 
  $.fn.loopScroll = function(option){
      var defaults = {
-              btnNext     : ".next_btn",
-              btnPrev     : ".pre_btn",
-              index       : ".img_count",
-              index_class : 'active',
-              mouseWheel  : true,
-              speed       : 4000
+        btnNext     : ".next_btn",
+        btnPrev     : ".pre_btn",
+        index       : ".img_count",
+        index_class : 'active',
+        mouseWheel  : true,
+        speed       : 4000
      }
 
      return this.each(function(){
-             var $this    = $(this)
-             ,data    = $this.data('loopScroll')
-             ,options = $.extend({}, defaults, $this.data(), typeof option == 'object' && option)
-             if (!data) $this.data('loopScroll', (data = new loopScroll(this, options)))
-             })
+        var $this    = $(this)
+            ,data    = $this.data('loopScroll')
+            ,options = $.extend({}, defaults, $this.data(), typeof option == 'object' && option);
+        if (!data) $this.data('loopScroll', (data = new loopScroll(this, options)))
+    })
  }
 
 })(jQuery)
